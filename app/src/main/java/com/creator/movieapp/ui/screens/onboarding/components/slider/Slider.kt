@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Slider(
+fun OnboardingSlider(
     width: Int = 76,
     number: Int = 1
 ) {
@@ -28,7 +28,7 @@ fun Slider(
 )
 @Composable
 private fun SliderPreview() {
-    Slider(number = 3)
+    OnboardingSlider(number = 3)
 }
 
 @Composable
