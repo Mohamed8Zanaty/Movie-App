@@ -1,4 +1,4 @@
-package com.creator.movieapp.ui.screens.components.slider
+package com.creator.movieapp.ui.screens.onboarding.components.slider
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

@@ -1,4 +1,4 @@
-package com.creator.movieapp.ui.screens.components.slider
+package com.creator.movieapp.ui.screens.onboarding.components.slider
 
 import android.icu.text.ListFormatter.Width
 import androidx.compose.foundation.background
