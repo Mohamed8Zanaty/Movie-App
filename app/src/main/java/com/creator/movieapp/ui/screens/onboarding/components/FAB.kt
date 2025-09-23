@@ -19,7 +19,6 @@ val CONTAINER_COLOR = Color(0xff12CDD9)
 @Composable
 fun FAB(
     onclick: () -> Unit,
-    modifier: Modifier = Modifier,
     fabSize: Int = 60,
     iconWidth: Int = 7,
     iconHeight: Int = 14
