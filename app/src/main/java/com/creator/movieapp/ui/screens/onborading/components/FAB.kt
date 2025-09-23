@@ -1,4 +1,4 @@
-package com.creator.movieapp.ui.screens.components
+package com.creator.movieapp.ui.screens.onborading.components
 
 import android.icu.text.ListFormatter.Width
 import androidx.compose.foundation.background
