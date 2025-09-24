@@ -1,6 +1,6 @@
 package com.creator.movieapp.ui.screens.onboarding
 
-import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,26 +13,28 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.creator.movieapp.R
+import com.creator.movieapp.model.movie.MovieViewModel
+import com.creator.movieapp.ui.navigation.Routes
+
 import com.creator.movieapp.ui.screens.onboarding.components.Carousel
 import com.creator.movieapp.ui.screens.onboarding.components.FAB
 import com.creator.movieapp.ui.screens.onboarding.components.TitleAndDesc
 import com.creator.movieapp.ui.screens.onboarding.components.slider.OnboardingSlider
 import com.creator.movieapp.ui.theme.PageBackground
 
-val movies = listOf(
-    R.drawable.movie_test,
-    R.drawable.movie_test,
-    R.drawable.movie_test,
-)
 
 @Composable
-fun OnboardingSecondPage(modifier: Modifier = Modifier) {
+fun OnboardingSecondPage(viewModel: MovieViewModel, navHostController: NavHostController) {
+    val featured by viewModel.featured.collectAsState()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -41,8 +43,8 @@ fun OnboardingSecondPage(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
                 .background(PageBackground)
+                .padding(it)
                 .padding(top = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -51,7 +53,7 @@ fun OnboardingSecondPage(modifier: Modifier = Modifier) {
                     .weight(1f)
             ) {
                 Carousel(
-                    images = movies,
+                    images = featured,
                     pageAnimDurationMs = 2000,
                     pauseBetweenPagesMs = 700L
                 )
@@ -75,14 +77,10 @@ fun OnboardingSecondPage(modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 OnboardingSlider(number = 2)
-                FAB({})
+                FAB({
+                    navHostController.navigate(Routes.Onboarding3)
+                })
             }
         }
     }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-private fun OnboardingSecondPagePreview() {
-    OnboardingSecondPage()
 }

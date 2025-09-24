@@ -18,14 +18,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.creator.movieapp.R
+import com.creator.movieapp.ui.navigation.Routes
 import com.creator.movieapp.ui.screens.onboarding.components.FAB
 import com.creator.movieapp.ui.screens.onboarding.components.TitleAndDesc
 import com.creator.movieapp.ui.screens.onboarding.components.slider.OnboardingSlider
 import com.creator.movieapp.ui.theme.PageBackground
 
 @Composable
-fun OnboardingFirstPage(modifier: Modifier = Modifier) {
+fun OnboardingFirstPage(navHostController: NavHostController) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -34,8 +36,8 @@ fun OnboardingFirstPage(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
-                .background(PageBackground),
+                .background(PageBackground)
+                .padding(it),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
@@ -64,7 +66,9 @@ fun OnboardingFirstPage(modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 OnboardingSlider(number = 1)
-                FAB({})
+                FAB({
+                    navHostController.navigate(Routes.Onboarding2)
+                })
             }
         }
     }
@@ -73,5 +77,5 @@ fun OnboardingFirstPage(modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun OnboardingFirstPagePreview() {
-    OnboardingFirstPage()
+//    OnboardingFirstPage()
 }

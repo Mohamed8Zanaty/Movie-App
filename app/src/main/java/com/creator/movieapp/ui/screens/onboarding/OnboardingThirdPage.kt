@@ -18,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.creator.movieapp.R
+import com.creator.movieapp.ui.navigation.Routes
 import com.creator.movieapp.ui.screens.onboarding.components.Carousel
 import com.creator.movieapp.ui.screens.onboarding.components.FAB
 import com.creator.movieapp.ui.screens.onboarding.components.FloatingBox
@@ -28,7 +30,7 @@ import com.creator.movieapp.ui.theme.PageBackground
 
 
 @Composable
-fun OnboardingThirdPage(modifier: Modifier = Modifier) {
+fun OnboardingThirdPage(navHostController: NavHostController) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -37,8 +39,8 @@ fun OnboardingThirdPage(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
                 .background(PageBackground)
+                .padding(it)
                 .padding(top = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -90,7 +92,9 @@ fun OnboardingThirdPage(modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 OnboardingSlider(number = 3)
-                FAB({})
+                FAB({
+                    navHostController.navigate(Routes.Home)
+                })
             }
         }
     }
@@ -99,5 +103,5 @@ fun OnboardingThirdPage(modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun OnboardingThirdPagePreview() {
-    OnboardingThirdPage()
+//    OnboardingThirdPage()
 }

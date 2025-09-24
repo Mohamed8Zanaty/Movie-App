@@ -4,22 +4,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.creator.movieapp.ui.screens.onboarding.components.CarouselPreview
-import com.creator.movieapp.ui.theme.MovieAppTheme
+import androidx.lifecycle.ViewModelProvider
+import com.creator.movieapp.api.API_KEY
+import com.creator.movieapp.api.RetrofitClient
+import com.creator.movieapp.model.movie.MovieRepository
+import com.creator.movieapp.model.movie.MovieViewModel
+import com.creator.movieapp.ui.navigation.NavigationSystem
+import com.creator.movieapp.ui.screens.homescreen.HomeScreen
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val api = RetrofitClient.create()
+        val repo = MovieRepository(api, API_KEY)
+        val factory = MovieViewModel.Factory(repo)
+
+        val vm = ViewModelProvider(this, factory)[MovieViewModel::class.java]
         setContent {
-            CarouselPreview()
+            NavigationSystem(vm)
         }
     }
 }

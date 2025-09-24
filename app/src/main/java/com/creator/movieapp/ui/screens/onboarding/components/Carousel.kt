@@ -36,7 +36,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.creator.movieapp.R
+import com.creator.movieapp.api.IMAGE_BASE
+import com.creator.movieapp.model.movie.Movie
 import kotlinx.coroutines.delay
+import coil.compose.AsyncImage
 import kotlin.math.absoluteValue
 
 val movies = listOf(
@@ -47,7 +50,7 @@ val movies = listOf(
 
 @Composable
 fun Carousel(
-    images: List<Int>,
+    images: List<Movie>,
     modifier: Modifier = Modifier,
     itemWidthRatio: Float = 0.65f,
     itemHeight: Dp = 360.dp,
@@ -122,9 +125,9 @@ fun Carousel(
                     .clip(RoundedCornerShape(18.dp))
                     .shadow(8.dp, RoundedCornerShape(18.dp))
             ) {
-                Image(
-                    painter = painterResource(id = images[imageIndex]),
-                    contentDescription = null,
+                AsyncImage(
+                    model = IMAGE_BASE + (images[imageIndex].posterPath ?: ""),
+                    contentDescription = images[imageIndex].title,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxSize()
@@ -139,23 +142,23 @@ fun Carousel(
 private fun lerp(start: Float, stop: Float, fraction: Float): Float =
     start + (stop - start) * fraction
 
-@Preview(showBackground = true, backgroundColor = 0xFF121217)
-@Composable
-fun CarouselPreview() {
-
-
-    Surface(color = Color(0xFF11121A), modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Carousel(
-                images = movies,
-                pageAnimDurationMs = 2000,
-                pauseBetweenPagesMs = 700L
-            )
-        }
-    }
-}
+//@Preview(showBackground = true, backgroundColor = 0xFF121217)
+//@Composable
+//fun CarouselPreview() {
+//
+//
+//    Surface(color = Color(0xFF11121A), modifier = Modifier.fillMaxSize()) {
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(top = 32.dp),
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            Carousel(
+//                images = movies,
+//                pageAnimDurationMs = 2000,
+//                pauseBetweenPagesMs = 700L
+//            )
+//        }
+//    }
+//}
