@@ -6,4 +6,5 @@ object Routes {
     const val Onboarding2 = "onboarding2"
     const val Onboarding3 = "onboarding3"
     const val Home = "home"
+    const val Search = "search"
 }
