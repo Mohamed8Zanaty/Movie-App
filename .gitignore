@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/src/main/java/com/creator/movieapp/api/Secret.kt
+app/src/main/java/com/creator/movieapp/api/Secret.kt
